@@ -3,21 +3,21 @@ import React, { useState } from 'react';
 import { useApp } from '../App';
 import { OrderStatus, MenuItem, RoomBooking, User, Room } from '../types';
 import { apiService } from '../services/apiService';
-import { 
-  ClipboardList, Bed, Utensils, Users as UsersIcon, 
+import {
+  ClipboardList, Bed, Utensils, Users as UsersIcon,
   Plus, Trash2, CheckCircle, Package,
   Edit3, X, Save, ShieldCheck,
   TrendingUp, Loader2
 } from 'lucide-react';
 
 const AdminDashboard: React.FC = () => {
-  const { 
+  const {
     auth,
-    orders, setOrders, 
-    menu, setMenu, 
-    users, setUsers, 
-    rooms, setRooms, 
-    roomBookings, setRoomBookings 
+    orders, setOrders,
+    menu, setMenu,
+    users, setUsers,
+    rooms, setRooms,
+    roomBookings, setRoomBookings
   } = useApp();
 
   const [activeTab, setActiveTab] = useState<'orders' | 'products' | 'users' | 'rooms'>('orders');
@@ -177,7 +177,7 @@ const AdminDashboard: React.FC = () => {
             { id: 'products', label: 'Menu Items', icon: Utensils },
             { id: 'users', label: 'Patron Mgmt', icon: UsersIcon }
           ].map(tab => (
-            <button 
+            <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
               className={`flex items-center space-x-3 px-10 py-5 rounded-[1.5rem] text-lg font-black transition-all whitespace-nowrap ${activeTab === tab.id ? 'bg-white shadow-2xl text-amber-800 scale-105 border border-slate-100' : 'text-slate-600 hover:text-slate-900'}`}
@@ -220,13 +220,12 @@ const AdminDashboard: React.FC = () => {
                     </td>
                     <td className="px-10 py-8 font-black text-amber-800 text-2xl">${order.total.toFixed(2)}</td>
                     <td className="px-10 py-8">
-                      <select 
-                        value={order.status} 
+                      <select
+                        value={order.status}
                         onChange={(e) => updateOrderStatus(order.id, e.target.value as any)}
-                        className={`text-sm font-black p-4 border-2 rounded-2xl outline-none focus:ring-4 ring-amber-500/10 cursor-pointer transition-all ${
-                          order.status === 'DELIVERED' ? 'bg-green-50 border-green-200 text-green-700' : 
-                          order.status === 'CANCELLED' ? 'bg-red-50 border-red-200 text-red-700' : 'bg-amber-50 border-amber-200 text-amber-800'
-                        }`}
+                        className={`text-sm font-black p-4 border-2 rounded-2xl outline-none focus:ring-4 ring-amber-500/10 cursor-pointer transition-all ${order.status === 'DELIVERED' ? 'bg-green-50 border-green-200 text-green-700' :
+                            order.status === 'CANCELLED' ? 'bg-red-50 border-red-200 text-red-700' : 'bg-amber-50 border-amber-200 text-amber-800'
+                          }`}
                       >
                         <option value="RECEIVED">Received</option>
                         <option value="PREPARING">Preparing</option>
@@ -236,7 +235,7 @@ const AdminDashboard: React.FC = () => {
                       </select>
                     </td>
                     <td className="px-10 py-8 text-right">
-                      <button 
+                      <button
                         onClick={() => handleDeleteOrder(order.id)}
                         disabled={isActionLoading === order.id}
                         className="p-5 bg-red-50 text-red-600 rounded-3xl hover:bg-red-600 hover:text-white transition-all shadow-sm"
@@ -272,13 +271,12 @@ const AdminDashboard: React.FC = () => {
                     <td className="px-10 py-8 font-bold text-slate-700 text-lg">{booking.roomName}</td>
                     <td className="px-10 py-8 text-base text-slate-600 font-black">{booking.checkIn} → {booking.checkOut}</td>
                     <td className="px-10 py-8">
-                      <select 
-                        value={booking.status} 
+                      <select
+                        value={booking.status}
                         onChange={(e) => updateBookingStatus(booking.id, e.target.value as any)}
-                        className={`text-sm font-black p-4 border-2 rounded-2xl outline-none focus:ring-4 ring-amber-500/10 cursor-pointer transition-all ${
-                          booking.status === 'COMPLETED' ? 'bg-green-50 border-green-200 text-green-700' : 
-                          booking.status === 'CANCELLED' ? 'bg-red-50 border-red-200 text-red-700' : 'bg-blue-50 border-blue-200 text-blue-800'
-                        }`}
+                        className={`text-sm font-black p-4 border-2 rounded-2xl outline-none focus:ring-4 ring-amber-500/10 cursor-pointer transition-all ${booking.status === 'COMPLETED' ? 'bg-green-50 border-green-200 text-green-700' :
+                            booking.status === 'CANCELLED' ? 'bg-red-50 border-red-200 text-red-700' : 'bg-blue-50 border-blue-200 text-blue-800'
+                          }`}
                       >
                         <option value="CONFIRMED">Confirmed</option>
                         <option value="CHECKED-IN">Patron Checked-In</option>
@@ -287,7 +285,7 @@ const AdminDashboard: React.FC = () => {
                       </select>
                     </td>
                     <td className="px-10 py-8 text-right">
-                       <button 
+                      <button
                         onClick={() => handleDeleteBooking(booking.id)}
                         disabled={isActionLoading === booking.id}
                         className="p-5 bg-red-50 text-red-600 rounded-3xl hover:bg-red-600 hover:text-white transition-all shadow-sm"
@@ -331,18 +329,18 @@ const AdminDashboard: React.FC = () => {
                     </td>
                     <td className="px-10 py-8 font-black text-amber-800 text-3xl">${item.price.toFixed(2)}</td>
                     <td className="px-10 py-8 text-right">
-                       <div className="flex justify-end space-x-4">
-                          <button onClick={() => { setEditingItem({...item}); setEditType('product'); }} className="p-5 bg-blue-50 text-blue-600 rounded-3xl hover:bg-blue-600 hover:text-white transition-all shadow-sm">
-                            <Edit3 size={24} />
-                          </button>
-                          <button 
-                            onClick={() => handleDeleteProduct(item.id)}
-                            disabled={isActionLoading === item.id}
-                            className="p-5 bg-red-50 text-red-600 rounded-3xl hover:bg-red-600 hover:text-white transition-all shadow-sm"
-                          >
-                            {isActionLoading === item.id ? <Loader2 size={24} className="animate-spin" /> : <Trash2 size={24} />}
-                          </button>
-                       </div>
+                      <div className="flex justify-end space-x-4">
+                        <button onClick={() => { setEditingItem({ ...item }); setEditType('product'); }} className="p-5 bg-blue-50 text-blue-600 rounded-3xl hover:bg-blue-600 hover:text-white transition-all shadow-sm">
+                          <Edit3 size={24} />
+                        </button>
+                        <button
+                          onClick={() => handleDeleteProduct(item.id)}
+                          disabled={isActionLoading === item.id}
+                          className="p-5 bg-red-50 text-red-600 rounded-3xl hover:bg-red-600 hover:text-white transition-all shadow-sm"
+                        >
+                          {isActionLoading === item.id ? <Loader2 size={24} className="animate-spin" /> : <Trash2 size={24} />}
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))}
@@ -366,22 +364,22 @@ const AdminDashboard: React.FC = () => {
                 {users.map(user => (
                   <tr key={user.id} className="hover:bg-slate-50 transition-all">
                     <td className="px-10 py-8">
-                       <div className="flex items-center space-x-4">
-                         <div className="w-14 h-14 bg-amber-50 text-amber-800 rounded-full flex items-center justify-center font-bold text-xl border-2 border-amber-100">
-                           {user.name.charAt(0).toUpperCase()}
-                         </div>
-                         <div className="font-black text-slate-900 text-lg">{user.name}</div>
-                       </div>
+                      <div className="flex items-center space-x-4">
+                        <div className="w-14 h-14 bg-amber-50 text-amber-800 rounded-full flex items-center justify-center font-bold text-xl border-2 border-amber-100">
+                          {user.name.charAt(0).toUpperCase()}
+                        </div>
+                        <div className="font-black text-slate-900 text-lg">{user.name}</div>
+                      </div>
                     </td>
                     <td className="px-10 py-8 text-lg font-medium text-slate-600">{user.email}</td>
                     <td className="px-10 py-8">
-                       <div className="flex items-center space-x-2">
-                         <span className="text-amber-800 font-black text-2xl">{user.loyaltyPoints}</span>
-                         <span className="text-xs font-black uppercase text-slate-400">Pts</span>
-                       </div>
+                      <div className="flex items-center space-x-2">
+                        <span className="text-amber-800 font-black text-2xl">{user.loyaltyPoints}</span>
+                        <span className="text-xs font-black uppercase text-slate-400">Pts</span>
+                      </div>
                     </td>
                     <td className="px-10 py-8 text-right">
-                       <button 
+                      <button
                         onClick={() => handleDeleteUser(user.id)}
                         disabled={isActionLoading === user.id}
                         className="p-5 bg-red-50 text-red-600 rounded-3xl hover:bg-red-600 hover:text-white transition-all shadow-sm"
@@ -415,30 +413,30 @@ const AdminDashboard: React.FC = () => {
                   <>
                     <div className="space-y-3">
                       <label className="text-sm font-black uppercase text-slate-500 tracking-widest ml-1">Delicacy Name</label>
-                      <input 
+                      <input
                         className="w-full p-6 rounded-[1.5rem] border-2 border-slate-100 bg-slate-50 text-xl font-bold text-slate-900 focus:bg-white focus:border-amber-500 transition-all"
-                        value={editingItem.name} 
-                        onChange={e => setEditingItem({...editingItem, name: e.target.value})} 
-                        required 
+                        value={editingItem.name}
+                        onChange={e => setEditingItem({ ...editingItem, name: e.target.value })}
+                        required
                       />
                     </div>
                     <div className="grid grid-cols-2 gap-8">
                       <div className="space-y-3">
                         <label className="text-sm font-black uppercase text-slate-500 tracking-widest ml-1">Investment (Price)</label>
-                        <input 
+                        <input
                           type="number" step="0.01"
                           className="w-full p-6 rounded-[1.5rem] border-2 border-slate-100 bg-slate-50 text-xl font-bold text-slate-900 focus:bg-white focus:border-amber-500 transition-all"
-                          value={editingItem.price} 
-                          onChange={e => setEditingItem({...editingItem, price: parseFloat(e.target.value)})} 
-                          required 
+                          value={editingItem.price}
+                          onChange={e => setEditingItem({ ...editingItem, price: parseFloat(e.target.value) })}
+                          required
                         />
                       </div>
                       <div className="space-y-3">
                         <label className="text-sm font-black uppercase text-slate-500 tracking-widest ml-1">Category</label>
-                        <select 
+                        <select
                           className="w-full p-6 rounded-[1.5rem] border-2 border-slate-100 bg-slate-50 text-xl font-bold text-slate-900 focus:bg-white focus:border-amber-500 transition-all"
-                          value={editingItem.category} 
-                          onChange={e => setEditingItem({...editingItem, category: e.target.value})}
+                          value={editingItem.category}
+                          onChange={e => setEditingItem({ ...editingItem, category: e.target.value })}
                         >
                           <option value="Appetizers">Appetizers</option>
                           <option value="Main Course">Main Course</option>
@@ -450,7 +448,7 @@ const AdminDashboard: React.FC = () => {
                   </>
                 )}
 
-                <button 
+                <button
                   type="submit"
                   className="w-full flex items-center justify-center space-x-4 bg-slate-900 text-white py-6 rounded-[2rem] text-2xl font-black transition-all shadow-2xl hover:bg-amber-800 active:scale-95"
                 >

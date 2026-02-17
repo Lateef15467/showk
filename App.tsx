@@ -82,7 +82,7 @@ const App: React.FC = () => {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [menu, setMenu] = useState<MenuItem[]>(INITIAL_MENU);
   const [rooms, setRooms] = useState<Room[]>(INITIAL_ROOMS);
-  
+
   const [users, setUsers] = useState<User[]>([
     { id: 'admin1', name: 'Showk Admin', email: 'admin@showk.com', role: 'ADMIN', loyaltyPoints: 5000 },
     { id: 'user1', name: 'John Doe', email: 'john@example.com', role: 'USER', loyaltyPoints: 120 }
@@ -112,7 +112,7 @@ const App: React.FC = () => {
       const response = await apiService.login(email, pass);
       const existingUser = users.find(u => u.email === email);
       const userData: User = existingUser || { ...response.user, loyaltyPoints: 0 };
-      
+
       setAuth({ user: userData, token: response.token, isAuthenticated: true });
       if (!existingUser) {
         setUsers(prev => [...prev, userData]);
@@ -141,7 +141,7 @@ const App: React.FC = () => {
 
   const removeFromCart = (id: string) => setCart(prev => prev.filter(i => i.id !== id));
   const clearCart = () => setCart([]);
-  
+
   const addOrder = (order: Order) => {
     setOrders(prev => [order, ...prev]);
     if (auth.user) {
@@ -159,7 +159,7 @@ const App: React.FC = () => {
 
   return (
     <AppContext.Provider value={{
-      auth, login, logout, cart, addToCart, removeFromCart, clearCart, menu, setMenu, 
+      auth, login, logout, cart, addToCart, removeFromCart, clearCart, menu, setMenu,
       rooms, setRooms, roomBookings, setRoomBookings, addRoomBooking,
       orders, setOrders, addOrder, users, setUsers, reservations, addReservation
     }}>
@@ -194,7 +194,7 @@ const App: React.FC = () => {
                       </span>
                     )}
                   </Link>
-                  
+
                   {auth.isAuthenticated ? (
                     <div className="flex items-center space-x-6">
                       <Link to="/profile" className="p-2 text-slate-700 hover:text-amber-800 transition-colors">
@@ -221,10 +221,10 @@ const App: React.FC = () => {
                 </div>
               </div>
             </div>
-            
+
             {/* Mobile Menu */}
             {isMobileMenuOpen && (
-              <div className="md:hidden glass border-t border-slate-200 p-8 space-y-6 animate-in fade-in slide-in-from-top-4 duration-200">
+              <div className="md:hidden glass border-t border-slate-200 p-8 space-y-6 animate-in fade-in slide-in-from-top-4 duration-200 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="block text-2xl font-black text-slate-900">Home</Link>
                 <Link to="/menu" onClick={() => setIsMobileMenuOpen(false)} className="block text-2xl font-black text-slate-900">Menu</Link>
                 <Link to="/rooms" onClick={() => setIsMobileMenuOpen(false)} className="block text-2xl font-black text-slate-900">Stay</Link>
