@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import { HashRouter, Routes, Route, Link, useNavigate, useLocation, Navigate } from 'react-router-dom';
 import { User, AuthState, CartItem, MenuItem, Order, Reservation, Room, RoomBooking } from './types';
@@ -157,6 +156,9 @@ const App: React.FC = () => {
   const addReservation = (res: Reservation) => setReservations(prev => [res, ...prev]);
   const addRoomBooking = (booking: RoomBooking) => setRoomBookings(prev => [booking, ...prev]);
 
+  // Close mobile menu on route change
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
+
   return (
     <AppContext.Provider value={{
       auth, login, logout, cart, addToCart, removeFromCart, clearCart, menu, setMenu,
@@ -165,83 +167,168 @@ const App: React.FC = () => {
     }}>
       <HashRouter>
         <div className="min-h-screen flex flex-col">
+
+          {/* ───────────────────────── NAVBAR ───────────────────────── */}
           <nav className="sticky top-0 z-50 glass">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="flex justify-between items-center h-24">
+              <div className="flex justify-between items-center h-16 sm:h-20 lg:h-24">
+
+                {/* Logo */}
                 <div className="flex-shrink-0">
-                  <Link to="/" className="text-4xl font-serif font-bold tracking-tighter text-amber-800 hover:text-amber-900 transition-colors">
+                  <Link
+                    to="/"
+                    onClick={closeMobileMenu}
+                    className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold tracking-tighter text-amber-800 hover:text-amber-900 transition-colors"
+                  >
                     {APP_NAME}
                   </Link>
                 </div>
 
-                <div className="hidden md:flex flex-1 justify-center space-x-12">
-                  <Link to="/" className="text-slate-700 hover:text-amber-800 px-3 py-2 text-lg font-black transition-colors">Home</Link>
-                  <Link to="/menu" className="text-slate-700 hover:text-amber-800 px-3 py-2 text-lg font-black transition-colors">Menu</Link>
-                  <Link to="/rooms" className="text-slate-700 hover:text-amber-800 px-3 py-2 text-lg font-black flex items-center transition-colors">
-                    <Bed size={20} className="mr-2" /> Stay
+                {/* Desktop Nav Links — hidden on mobile/tablet */}
+                <div className="hidden lg:flex flex-1 justify-center space-x-8 xl:space-x-12">
+                  <Link to="/" className="text-slate-700 hover:text-amber-800 px-3 py-2 text-base xl:text-lg font-black transition-colors">Home</Link>
+                  <Link to="/menu" className="text-slate-700 hover:text-amber-800 px-3 py-2 text-base xl:text-lg font-black transition-colors">Menu</Link>
+                  <Link to="/rooms" className="text-slate-700 hover:text-amber-800 px-3 py-2 text-base xl:text-lg font-black flex items-center transition-colors">
+                    <Bed size={18} className="mr-2" /> Stay
                   </Link>
-                  <Link to="/reservations" className="text-slate-700 hover:text-amber-800 px-3 py-2 text-lg font-black flex items-center transition-colors">
-                    <CalendarDays size={20} className="mr-2" /> Book Table
+                  <Link to="/reservations" className="text-slate-700 hover:text-amber-800 px-3 py-2 text-base xl:text-lg font-black flex items-center transition-colors">
+                    <CalendarDays size={18} className="mr-2" /> Book Table
                   </Link>
                 </div>
 
-                <div className="flex items-center space-x-8">
+                {/* Right-side icons */}
+                <div className="flex items-center space-x-2 sm:space-x-4">
+
+                  {/* Cart — always visible */}
                   <Link to="/checkout" className="relative p-2 text-slate-700 hover:text-amber-800 transition-colors">
-                    <ShoppingCart size={28} />
+                    <ShoppingCart size={24} />
                     {cart.length > 0 && (
-                      <span className="absolute -top-1 -right-1 px-2 py-1 text-xs font-black leading-none text-white bg-amber-600 rounded-full border-2 border-white shadow-sm">
+                      <span className="absolute -top-1 -right-1 px-1.5 py-0.5 text-xs font-black leading-none text-white bg-amber-600 rounded-full border-2 border-white shadow-sm">
                         {cart.reduce((acc, curr) => acc + curr.quantity, 0)}
                       </span>
                     )}
                   </Link>
 
+                  {/* Auth actions — desktop only */}
                   {auth.isAuthenticated ? (
-                    <div className="flex items-center space-x-6">
+                    <div className="hidden lg:flex items-center space-x-4">
                       <Link to="/profile" className="p-2 text-slate-700 hover:text-amber-800 transition-colors">
-                        <UserIcon size={28} />
+                        <UserIcon size={24} />
                       </Link>
                       {auth.user?.role === 'ADMIN' && (
-                        <Link to="/admin" className="text-amber-800 bg-amber-50 rounded-full px-6 py-3 text-sm font-black border border-amber-200 hidden md:flex items-center transition-all hover:bg-amber-100 shadow-sm">
-                          <LayoutDashboard size={20} className="mr-2" /> Admin
+                        <Link to="/admin" className="text-amber-800 bg-amber-50 rounded-full px-5 py-2.5 text-sm font-black border border-amber-200 flex items-center transition-all hover:bg-amber-100 shadow-sm">
+                          <LayoutDashboard size={18} className="mr-2" /> Admin
                         </Link>
                       )}
                       <button onClick={logout} className="p-2 text-slate-700 hover:text-red-600 transition-colors">
-                        <LogOut size={28} />
+                        <LogOut size={24} />
                       </button>
                     </div>
                   ) : (
-                    <button onClick={() => setIsAuthModalOpen(true)} className="bg-amber-800 text-white px-8 py-4 rounded-full text-base font-black shadow-lg hover:bg-amber-900 transition-all active:scale-95">
+                    <button
+                      onClick={() => setIsAuthModalOpen(true)}
+                      className="hidden lg:block bg-amber-800 text-white px-6 py-3 rounded-full text-sm font-black shadow-lg hover:bg-amber-900 transition-all active:scale-95"
+                    >
                       Sign In
                     </button>
                   )}
 
-                  <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="md:hidden p-2 text-slate-700">
-                    {isMobileMenuOpen ? <X size={32} /> : <MenuIcon size={32} />}
+                  {/* Mobile: Sign In button (when not authenticated) */}
+                  {!auth.isAuthenticated && (
+                    <button
+                      onClick={() => setIsAuthModalOpen(true)}
+                      className="lg:hidden bg-amber-800 text-white px-4 py-2 rounded-full text-xs font-black shadow hover:bg-amber-900 transition-all active:scale-95"
+                    >
+                      Sign In
+                    </button>
+                  )}
+
+                  {/* Mobile: profile icon (when authenticated) */}
+                  {auth.isAuthenticated && (
+                    <Link to="/profile" onClick={closeMobileMenu} className="lg:hidden p-2 text-slate-700 hover:text-amber-800 transition-colors">
+                      <UserIcon size={22} />
+                    </Link>
+                  )}
+
+                  {/* Hamburger — visible below lg */}
+                  <button
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    className="lg:hidden p-2 text-slate-700 hover:text-amber-800 transition-colors rounded-lg"
+                    aria-label="Toggle menu"
+                  >
+                    {isMobileMenuOpen ? <X size={26} /> : <MenuIcon size={26} />}
                   </button>
                 </div>
               </div>
             </div>
 
-            {/* Mobile Menu */}
+            {/* ───── Mobile Drawer ───── */}
             {isMobileMenuOpen && (
-              <div className="md:hidden glass border-t border-slate-200 p-8 space-y-6 animate-in fade-in slide-in-from-top-4 duration-200 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="block text-2xl font-black text-slate-900">Home</Link>
-                <Link to="/menu" onClick={() => setIsMobileMenuOpen(false)} className="block text-2xl font-black text-slate-900">Menu</Link>
-                <Link to="/rooms" onClick={() => setIsMobileMenuOpen(false)} className="block text-2xl font-black text-slate-900">Stay</Link>
-                <Link to="/reservations" onClick={() => setIsMobileMenuOpen(false)} className="block text-2xl font-black text-slate-900">Book Table</Link>
-                {auth.isAuthenticated && (
-                  <>
-                    <Link to="/profile" onClick={() => setIsMobileMenuOpen(false)} className="block text-2xl font-black text-slate-900">Profile</Link>
-                    {auth.user?.role === 'ADMIN' && (
-                      <Link to="/admin" onClick={() => setIsMobileMenuOpen(false)} className="block text-2xl font-black text-amber-800 bg-amber-50 p-4 rounded-2xl border border-amber-200 flex items-center">
-                        <LayoutDashboard size={28} className="mr-4" /> Admin Dashboard
+              <div className="lg:hidden glass border-t border-slate-200 animate-in fade-in slide-in-from-top-4 duration-200">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 space-y-1">
+
+                  {/* Nav links */}
+                  {[
+                    { to: '/', label: 'Home' },
+                    { to: '/menu', label: 'Menu' },
+                    { to: '/rooms', label: 'Stay', icon: <Bed size={20} className="mr-3 text-amber-700" /> },
+                    { to: '/reservations', label: 'Book Table', icon: <CalendarDays size={20} className="mr-3 text-amber-700" /> },
+                  ].map(({ to, label, icon }) => (
+                    <Link
+                      key={to}
+                      to={to}
+                      onClick={closeMobileMenu}
+                      className="flex items-center px-4 py-3.5 rounded-xl text-lg font-black text-slate-800 hover:bg-amber-50 hover:text-amber-900 transition-colors"
+                    >
+                      {icon ?? null}
+                      {label}
+                    </Link>
+                  ))}
+
+                  {/* Divider */}
+                  <div className="border-t border-slate-200 my-3" />
+
+                  {/* Auth section */}
+                  {auth.isAuthenticated ? (
+                    <>
+                      <Link
+                        to="/profile"
+                        onClick={closeMobileMenu}
+                        className="flex items-center px-4 py-3.5 rounded-xl text-lg font-black text-slate-800 hover:bg-amber-50 hover:text-amber-900 transition-colors"
+                      >
+                        <UserIcon size={20} className="mr-3 text-amber-700" /> Profile
                       </Link>
-                    )}
-                  </>
-                )}
+
+                      {auth.user?.role === 'ADMIN' && (
+                        <Link
+                          to="/admin"
+                          onClick={closeMobileMenu}
+                          className="flex items-center px-4 py-3.5 rounded-xl text-lg font-black text-amber-800 bg-amber-50 border border-amber-200 hover:bg-amber-100 transition-colors"
+                        >
+                          <LayoutDashboard size={20} className="mr-3" /> Admin Dashboard
+                        </Link>
+                      )}
+
+                      <button
+                        onClick={() => { logout(); closeMobileMenu(); }}
+                        className="w-full flex items-center px-4 py-3.5 rounded-xl text-lg font-black text-red-600 hover:bg-red-50 transition-colors"
+                      >
+                        <LogOut size={20} className="mr-3" /> Sign Out
+                      </button>
+                    </>
+                  ) : (
+                    <button
+                      onClick={() => { setIsAuthModalOpen(true); closeMobileMenu(); }}
+                      className="w-full bg-amber-800 text-white px-6 py-4 rounded-2xl text-base font-black shadow-lg hover:bg-amber-900 transition-all active:scale-95"
+                    >
+                      Sign In
+                    </button>
+                  )}
+                </div>
               </div>
             )}
           </nav>
+          {/* ─────────────────────── END NAVBAR ─────────────────────── */}
 
           <main className="flex-grow">
             <Routes>

@@ -170,7 +170,7 @@ const AdminDashboard: React.FC = () => {
       </div>
 
       <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-12 gap-8">
-        <div className="flex bg-slate-200 p-2.5 rounded-[2rem] border-2 border-slate-300 shadow-inner overflow-x-auto no-scrollbar">
+        <div className="flex bg-slate-200 p-2.5 rounded-[1rem] border-2 border-slate-300 shadow-inner overflow-x-auto no-scrollbar">
           {[
             { id: 'orders', label: 'Culinary Orders', icon: ClipboardList },
             { id: 'rooms', label: 'Suite Stays', icon: Bed },
@@ -190,7 +190,7 @@ const AdminDashboard: React.FC = () => {
       </div>
 
       {/* Management Tables */}
-      <div className="bg-white rounded-[3.5rem] border-2 border-slate-200 shadow-2xl overflow-hidden mb-24">
+      <div className="bg-white rounded-[1rem] border-2 border-slate-200 shadow-2xl overflow-hidden mb-24">
         {activeTab === 'orders' && (
           <div className="overflow-x-auto">
             <table className="w-full text-left">
