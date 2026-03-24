@@ -31,7 +31,7 @@ const Home: React.FC = () => {
             </h1>
 
             <p className="text-sm sm:text-lg mb-6 sm:mb-10 opacity-80 leading-relaxed">
-              Experience a sensory journey at the city's highest peak, where fine dining meets panoramic horizon views.
+              Experience a sensory journey at the city's highest peak, where fine dining meets panoramic Showk views.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">

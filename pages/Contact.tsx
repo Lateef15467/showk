@@ -36,7 +36,7 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <p className="font-bold text-slate-900">Our Location</p>
-                    <p className="text-slate-500 text-sm">123 Horizon Peak Dr.<br/>Celestial Valley, CV 90210</p>
+                    <p className="text-slate-500 text-sm">123 Showk Peak Dr.<br/>Celestial Valley, CV 90210</p>
                   </div>
                 </div>
 
@@ -57,8 +57,8 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <p className="font-bold text-slate-900">Email</p>
-                    <p className="text-slate-500 text-sm">reservations@showkview.com</p>
-                    <p className="text-slate-500 text-sm">events@showkview.com</p>
+                    <p className="text-slate-500 text-sm">reservations@Showkview.com</p>
+                    <p className="text-slate-500 text-sm">events@Showkview.com</p>
                   </div>
                 </div>
               </div>
@@ -163,7 +163,7 @@ const Contact: React.FC = () => {
                <div className="absolute inset-0 flex items-center justify-center">
                   <div className="bg-white/90 backdrop-blur-sm p-4 rounded-2xl shadow-xl flex items-center space-x-3 border border-amber-200">
                     <MapPin className="text-amber-600" />
-                    <span className="font-bold text-slate-800">Horizon Peak Location</span>
+                    <span className="font-bold text-slate-800">Showk Peak Location</span>
                   </div>
                </div>
             </div>

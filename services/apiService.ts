@@ -9,7 +9,7 @@ export const apiService = {
   login: async (email: string, pass: string) => {
     console.log(`[MERN] POST ${API_URL}/auth/login`);
     await wait(1000); 
-    if (email === 'admin@showk.com' && pass === 'admin') {
+    if (email === 'admin@Showk.com' && pass === 'admin') {
       return { 
         user: { id: 'admin1', name: 'Showk Admin', email, role: 'ADMIN' as const, loyaltyPoints: 5000 }, 
         token: 'fake-jwt-admin-token' 
@@ -77,7 +77,7 @@ export const apiService = {
     return true;
   },
 
-  // --- PATRONS / USERS ---
+  // --- UserS / USERS ---
   updateUser: async (user: User, token: string) => {
     console.log(`[MERN] PUT ${API_URL}/users/${user.id}`, user);
     await wait(600);

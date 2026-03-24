@@ -155,7 +155,7 @@ const ProductDetails: React.FC = () => {
       <div className="grid lg:grid-cols-3 gap-16">
         <div className="lg:col-span-2">
           <h2 className="text-3xl font-serif font-bold text-slate-900 mb-8 flex items-center">
-            <MessageSquare className="mr-4 text-amber-800" /> Patron Reviews
+            <MessageSquare className="mr-4 text-amber-800" /> User Reviews
           </h2>
           
           <div className="space-y-8">
@@ -239,7 +239,7 @@ const ProductDetails: React.FC = () => {
               </button>
               
               {!auth.isAuthenticated && (
-                <p className="text-center text-[10px] font-bold text-slate-400 uppercase">Only registered patrons can leave reviews.</p>
+                <p className="text-center text-[10px] font-bold text-slate-400 uppercase">Only registered Users can leave reviews.</p>
               )}
             </form>
           </div>

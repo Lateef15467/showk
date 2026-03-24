@@ -34,7 +34,7 @@ export interface MenuItem {
 export interface Room {
   id: string;
   name: string;
-  type: 'Deluxe' | 'Executive Suite' | 'Presidential' | 'Penthouse';
+  type: 'Deluxe' | 'Executive Room' | 'Presidential' | 'Penthouse';
   description: string;
   pricePerNight: number;
   amenities: string[];

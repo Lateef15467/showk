@@ -65,7 +65,7 @@ export const INITIAL_MENU: MenuItem[] = [
 export const INITIAL_ROOMS: Room[] = [
   {
     id: 'rm1',
-    name: 'Horizon Deluxe',
+    name: 'Showk Deluxe',
     type: 'Deluxe',
     description: 'Experience panoramic city views with floor-to-ceiling windows and premium marble finishes.',
     pricePerNight: 299,
@@ -76,8 +76,8 @@ export const INITIAL_ROOMS: Room[] = [
   },
   {
     id: 'rm2',
-    name: 'Celestial Executive Suite',
-    type: 'Executive Suite',
+    name: 'Celestial Executive Room',
+    type: 'Executive Room',
     description: 'A spacious haven designed for elite travelers, featuring a separate living area and a private terrace.',
     pricePerNight: 499,
     amenities: ['King Bed', 'Private Terrace', 'Jacuzzi', 'Workstation', 'VIP Lounge Access'],
@@ -89,7 +89,7 @@ export const INITIAL_ROOMS: Room[] = [
     id: 'rm3',
     name: 'The Showk Presidential',
     type: 'Presidential',
-    description: 'The pinnacle of luxury. A 200sqm suite with a private kitchen, grand piano, and dedicated butler.',
+    description: 'The pinnacle of luxury. A 200sqm Room with a private kitchen, grand piano, and dedicated butler.',
     pricePerNight: 1200,
     amenities: ['Grand Piano', 'Private Kitchen', 'Butler Service', 'Steam Room', 'Home Cinema'],
     image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&q=80&w=1200',
