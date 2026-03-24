@@ -70,7 +70,7 @@ const RoomDetails: React.FC = () => {
   };
 
   if (!room)
-    return <div className="text-center py-24 font-serif text-2xl">Suite Selection Not Found</div>;
+    return <div className="text-center py-24 font-serif text-2xl">Room Selection Not Found</div>;
 
   /* ── Success Screen ── */
   if (isSuccess) {
@@ -82,13 +82,13 @@ const RoomDetails: React.FC = () => {
         </div>
         <h2 className="text-3xl sm:text-5xl font-serif font-bold text-slate-900 mb-4 sm:mb-6">Stay Confirmed</h2>
         <p className="text-base sm:text-xl text-slate-600 mb-8 sm:mb-12 italic leading-relaxed">
-          Your sanctuary at the peak has been reserved. Data synced to your Patron Profile.
+          Your sanctuary at the peak has been reserved. Data synced to your User Profile.
         </p>
 
         <div className="bg-white rounded-3xl sm:rounded-[2.5rem] p-8 sm:p-12 border border-slate-100 shadow-2xl text-left space-y-5 sm:space-y-6 relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-2 bg-green-500" />
           <div className="flex justify-between items-center border-b border-slate-50 pb-4 sm:pb-5 gap-4">
-            <span className="text-slate-500 font-bold italic text-sm sm:text-base">Suite Type</span>
+            <span className="text-slate-500 font-bold italic text-sm sm:text-base">Room Type</span>
             <span className="text-slate-900 font-black text-base sm:text-lg text-right">{room.name}</span>
           </div>
           <div className="flex justify-between items-center border-b border-slate-50 pb-4 sm:pb-5 gap-4">
@@ -214,7 +214,7 @@ const RoomDetails: React.FC = () => {
             {/* Guest Count */}
             <div className="space-y-2 sm:space-y-3">
               <label className="text-xs sm:text-sm font-black uppercase text-slate-600 tracking-widest ml-1">
-                Patron Count
+                User Count
               </label>
               <input
                 type="number"
@@ -231,7 +231,7 @@ const RoomDetails: React.FC = () => {
             {nights > 0 ? (
               <div className="bg-amber-50/50 p-7 sm:p-10 rounded-3xl sm:rounded-[2.5rem] border border-amber-200 space-y-4 sm:space-y-6 animate-in fade-in slide-in-from-top-2">
                 <div className="flex justify-between text-sm sm:text-base text-slate-700 font-bold italic gap-4">
-                  <span>Suite Rental ({nights} Nights)</span>
+                  <span>Room Rental ({nights} Nights)</span>
                   <span className="flex-shrink-0">${totalPrice.toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between text-sm sm:text-base text-green-700 font-bold italic gap-4">

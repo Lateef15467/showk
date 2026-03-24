@@ -13,7 +13,7 @@ export const registerUser = async (req: any, res: any) => {
 export const loginUser = async (req: any, res: any) => {
   const { email, password } = req.body;
   // Find user, compare passwords
-  if (email === 'admin@showk.com' && password === 'admin') {
+  if (email === 'admin@Showk.com' && password === 'admin') {
     res.json({
       user: { id: 'admin-id', name: 'Admin', email, role: 'ADMIN' },
       token: 'admin-jwt-token'

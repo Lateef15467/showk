@@ -83,7 +83,7 @@ const App: React.FC = () => {
   const [rooms, setRooms] = useState<Room[]>(INITIAL_ROOMS);
 
   const [users, setUsers] = useState<User[]>([
-    { id: 'admin1', name: 'Showk Admin', email: 'admin@showk.com', role: 'ADMIN', loyaltyPoints: 5000 },
+    { id: 'admin1', name: 'Showk Admin', email: 'admin@Showk.com', role: 'ADMIN', loyaltyPoints: 5000 },
     { id: 'user1', name: 'John Doe', email: 'john@example.com', role: 'USER', loyaltyPoints: 120 }
   ]);
 
@@ -349,7 +349,7 @@ const App: React.FC = () => {
           <footer className="bg-slate-900 text-slate-200 py-24">
             <div className="max-w-7xl mx-auto px-4 text-center">
               <h2 className="text-4xl font-serif text-white mb-6 tracking-tight">{APP_NAME}</h2>
-              <p className="max-w-2xl mx-auto mb-12 text-lg text-slate-400 italic leading-relaxed">Redefining luxury through culinary mastery and panoramic views. Experience the peak of hospitality at Horizon Peak.</p>
+              <p className="max-w-2xl mx-auto mb-12 text-lg text-slate-400 italic leading-relaxed">Redefining luxury through culinary mastery and panoramic views. Experience the peak of hospitality at Showk Peak.</p>
               <div className="flex justify-center flex-wrap gap-10 mb-16 text-sm font-black uppercase tracking-[0.2em]">
                 <Link to="/about" className="text-white hover:text-amber-500 transition-colors">Our Story</Link>
                 <Link to="/contact" className="text-white hover:text-amber-500 transition-colors">Reach Us</Link>

@@ -19,7 +19,7 @@ const Rooms: React.FC = () => {
           Sanctuaries of Serenity
         </h1>
         <p className="text-slate-500 text-sm sm:text-base max-w-2xl mx-auto">
-          Discover our collection of high-altitude suites, where modern elegance meets comfort.
+          Discover our collection of high-altitude Rooms, where modern elegance meets comfort.
         </p>
       </header>
 

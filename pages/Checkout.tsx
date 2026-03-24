@@ -24,7 +24,7 @@ const Checkout: React.FC = () => {
   const total = subtotal + deliveryFee - discountAmount;
 
   const handleApplyCoupon = () => {
-    if (couponCode.toUpperCase() === 'SHOWK20') {
+    if (couponCode.toUpperCase() === 'Showk20') {
       setDiscount(0.2);
       setCouponError('');
     } else {
@@ -134,7 +134,7 @@ const Checkout: React.FC = () => {
                   <Ticket className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
                   <input 
                     type="text" 
-                    placeholder="Promo Code (SHOWK20)" 
+                    placeholder="Promo Code (Showk20)" 
                     className={`w-full pl-12 pr-4 py-4 rounded-xl border border-slate-200 outline-none focus:ring-2 ${discount > 0 ? 'ring-green-500 border-green-200' : 'ring-amber-500'}`}
                     value={couponCode}
                     onChange={e => setCouponCode(e.target.value)}

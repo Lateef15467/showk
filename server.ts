@@ -9,7 +9,7 @@
 
 const expressMock = () => {
   console.log("Express Server Initialized...");
-  console.log("Connecting to MongoDB at mongodb://localhost:27017/showk-view...");
+  console.log("Connecting to MongoDB at mongodb://localhost:27017/Showk-view...");
   
   // App Config
   // app.use(express.json());

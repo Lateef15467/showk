@@ -10,7 +10,7 @@ const Profile: React.FC = () => {
   if (!auth.isAuthenticated || !auth.user) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-16 sm:py-24 text-center">
-        <h2 className="text-3xl sm:text-4xl font-serif font-bold mb-6 text-slate-900">Patron Access Only</h2>
+        <h2 className="text-3xl sm:text-4xl font-serif font-bold mb-6 text-slate-900">User Access Only</h2>
         <p className="text-lg sm:text-xl text-slate-600">Please sign in to view your culinary and travel journey.</p>
       </div>
     );
@@ -52,10 +52,10 @@ const Profile: React.FC = () => {
             <p className="text-xs sm:text-sm font-bold opacity-80 mb-6 sm:mb-8 uppercase tracking-widest">Available Loyalty Points</p>
             <div className="bg-white/10 p-5 sm:p-6 rounded-2xl border border-white/5">
               <p className="font-black text-amber-300 mb-2 uppercase text-xs tracking-widest">
-                Patron Tier: {auth.user.loyaltyPoints > 1000 ? 'Platinum Horizon' : 'Gold Signature'}
+                User Tier: {auth.user.loyaltyPoints > 1000 ? 'Platinum Showk' : 'Gold Signature'}
               </p>
               <p className="text-sm text-amber-50 leading-relaxed italic opacity-80">
-                Points can be redeemed for private cellar tours or suite upgrades.
+                Points can be redeemed for private cellar tours or Room upgrades.
               </p>
             </div>
           </div>
@@ -95,7 +95,7 @@ const Profile: React.FC = () => {
               <div className="space-y-6 sm:space-y-8">
                 {userStays.length === 0 ? (
                   <div className="p-12 sm:p-20 text-center bg-white rounded-3xl sm:rounded-[2.5rem] border border-slate-100 text-slate-400 italic text-lg sm:text-xl shadow-sm">
-                    No luxury stays recorded. Visit our suites to begin your journey.
+                    No luxury stays recorded. Visit our Rooms to begin your journey.
                   </div>
                 ) : userStays.map(stay => (
                   <div
@@ -172,7 +172,7 @@ const Profile: React.FC = () => {
                         <span className="text-lg sm:text-2xl font-serif font-bold leading-none">{res.date.split('-')[2]}</span>
                       </div>
                       <div className="min-w-0">
-                        <h4 className="text-base sm:text-xl font-bold text-slate-900 truncate">{res.time} • {res.guests} Patrons</h4>
+                        <h4 className="text-base sm:text-xl font-bold text-slate-900 truncate">{res.time} • {res.guests} Users</h4>
                         <p className="text-xs sm:text-sm text-slate-500 font-bold italic flex items-center mt-1">
                           <MapPin size={13} className="mr-1.5 sm:mr-2 text-amber-700 flex-shrink-0" /> Premium Terrace Seating
                         </p>

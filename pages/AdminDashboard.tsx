@@ -68,7 +68,7 @@ const AdminDashboard: React.FC = () => {
   };
 
   const handleDeleteUser = async (id: string) => {
-    if (confirm('Revoke patron access and delete account?')) {
+    if (confirm('Revoke User access and delete account?')) {
       setIsActionLoading(id);
       try {
         await apiService.deleteUser(id, auth.token!);
@@ -136,9 +136,9 @@ const AdminDashboard: React.FC = () => {
 
   const tabs = [
     { id: 'orders', label: 'Orders', fullLabel: 'Culinary Orders', icon: ClipboardList },
-    { id: 'rooms', label: 'Stays', fullLabel: 'Suite Stays', icon: Bed },
+    { id: 'rooms', label: 'Stays', fullLabel: 'Room Stays', icon: Bed },
     { id: 'products', label: 'Menu', fullLabel: 'Menu Items', icon: Utensils },
-    { id: 'users', label: 'Patrons', fullLabel: 'Patron Mgmt', icon: UsersIcon },
+    { id: 'users', label: 'Users', fullLabel: 'User ', icon: UsersIcon },
   ];
 
   return (
@@ -148,7 +148,7 @@ const AdminDashboard: React.FC = () => {
       <header className="mb-8 sm:mb-12 flex flex-col sm:flex-row sm:items-end justify-between gap-4 sm:gap-6">
         <div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-slate-900 mb-2 sm:mb-4 tracking-tight">
-            Horizon Control
+            Showk Control
           </h1>
           <p className="text-base sm:text-xl lg:text-2xl text-slate-500 font-medium italic">
             Master management for the Showk-View ecosystem.
@@ -173,7 +173,7 @@ const AdminDashboard: React.FC = () => {
         </div>
 
         <div className="bg-amber-800 p-6 sm:p-8 lg:p-10 rounded-3xl sm:rounded-[3rem] shadow-2xl shadow-amber-900/30 text-white">
-          <p className="text-amber-200 text-xs font-black uppercase tracking-widest mb-3 sm:mb-4">Suites Booked</p>
+          <p className="text-amber-200 text-xs font-black uppercase tracking-widest mb-3 sm:mb-4">Rooms Booked</p>
           <div className="flex items-center justify-between gap-2">
             <h3 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold">{roomBookings.length}</h3>
             <Bed className="text-amber-400 flex-shrink-0" size={24} />
@@ -191,7 +191,7 @@ const AdminDashboard: React.FC = () => {
         </div>
 
         <div className="bg-white p-6 sm:p-8 lg:p-10 rounded-3xl sm:rounded-[3rem] border-2 border-slate-100 shadow-sm">
-          <p className="text-slate-500 text-xs font-black uppercase tracking-widest mb-3 sm:mb-4">Patron Registry</p>
+          <p className="text-slate-500 text-xs font-black uppercase tracking-widest mb-3 sm:mb-4">User Registry</p>
           <div className="flex items-center justify-between gap-2">
             <h3 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-slate-900">{users.length}</h3>
             <UsersIcon className="text-slate-400 flex-shrink-0" size={24} />
@@ -232,7 +232,7 @@ const AdminDashboard: React.FC = () => {
               <thead className="bg-slate-900 text-white text-xs font-black uppercase tracking-[0.15em]">
                 <tr>
                   <th className="px-5 sm:px-10 py-6 sm:py-10">ID</th>
-                  <th className="px-5 sm:px-10 py-6 sm:py-10">Patron</th>
+                  <th className="px-5 sm:px-10 py-6 sm:py-10">User</th>
                   <th className="px-5 sm:px-10 py-6 sm:py-10">Items</th>
                   <th className="px-5 sm:px-10 py-6 sm:py-10">Total</th>
                   <th className="px-5 sm:px-10 py-6 sm:py-10">Status</th>
@@ -299,8 +299,8 @@ const AdminDashboard: React.FC = () => {
               <thead className="bg-slate-900 text-white text-xs font-black uppercase tracking-[0.15em]">
                 <tr>
                   <th className="px-5 sm:px-10 py-6 sm:py-10">Stay ID</th>
-                  <th className="px-5 sm:px-10 py-6 sm:py-10">Patron</th>
-                  <th className="px-5 sm:px-10 py-6 sm:py-10">Suite</th>
+                  <th className="px-5 sm:px-10 py-6 sm:py-10">User</th>
+                  <th className="px-5 sm:px-10 py-6 sm:py-10">Room</th>
                   <th className="px-5 sm:px-10 py-6 sm:py-10">Dates</th>
                   <th className="px-5 sm:px-10 py-6 sm:py-10">Status</th>
                   <th className="px-5 sm:px-10 py-6 sm:py-10 text-right">Action</th>
@@ -419,7 +419,7 @@ const AdminDashboard: React.FC = () => {
             <table className="w-full text-left min-w-[400px]">
               <thead className="bg-slate-900 text-white text-xs font-black uppercase tracking-[0.15em]">
                 <tr>
-                  <th className="px-5 sm:px-10 py-6 sm:py-10">Patron</th>
+                  <th className="px-5 sm:px-10 py-6 sm:py-10">User</th>
                   <th className="px-5 sm:px-10 py-6 sm:py-10">Email</th>
                   <th className="px-5 sm:px-10 py-6 sm:py-10">Loyalty</th>
                   <th className="px-5 sm:px-10 py-6 sm:py-10 text-right">Action</th>

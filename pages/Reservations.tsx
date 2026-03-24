@@ -51,7 +51,7 @@ const Reservations: React.FC = () => {
           </div>
           <div className="flex justify-between font-bold">
             <span>Guests</span>
-            <span>{formData.guests} Patrons</span>
+            <span>{formData.guests} Users</span>
           </div>
         </div>
       </div>
@@ -63,7 +63,7 @@ const Reservations: React.FC = () => {
       <div className="grid lg:grid-cols-2 gap-16 items-center">
         <div>
           <span className="text-amber-600 font-bold uppercase tracking-widest text-xs mb-4 block">Exclusive Dining</span>
-          <h1 className="text-6xl font-serif font-bold text-slate-900 mb-8 leading-tight">Secure Your <br/> Horizon View</h1>
+          <h1 className="text-6xl font-serif font-bold text-slate-900 mb-8 leading-tight">Secure Your <br/> Showk View</h1>
           <p className="text-lg text-slate-600 mb-12 leading-relaxed">
             Our limited seating ensures an intimate environment. Whether it's a romantic evening or a business meeting, we provide the perfect atmosphere.
           </p>
