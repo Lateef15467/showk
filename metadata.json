@@ -1,0 +1,7 @@
+{
+  "name": "Copy of Showk-View Restaurant",
+  "description": "A premium dining experience with a stunning view. Features a full menu, secure checkout with simulated payment, AI-powered menu recommendations, and a comprehensive admin dashboard.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
