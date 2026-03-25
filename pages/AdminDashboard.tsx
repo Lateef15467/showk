@@ -46,7 +46,7 @@ const AdminDashboard: React.FC = () => {
         await apiService.deleteProduct(id, auth.token!);
         setMenu(prev => prev.filter(m => m.id !== id));
       } catch (err) {
-        alert('System error: Failed to delete product.');
+        alert('System error : Failed to delete product.');
       } finally {
         setIsActionLoading(null);
       }
